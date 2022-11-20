@@ -42,8 +42,9 @@ class Solution{
         for(int i=0;i<n;i++)
         {
             curr+=arr[i];
-            if(curr>max)
+            if(curr>max){
             max=curr;
+            }
             if(curr<0)
             curr=0;
         }
