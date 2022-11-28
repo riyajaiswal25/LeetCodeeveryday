@@ -1,31 +1,25 @@
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
-        if (matches == null || matches.length == 0) {
-            return List.of(List.of(0));
+       HashMap<Integer, Integer> map=new HashMap<>();
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer> zeroL=new ArrayList<>();
+        List<Integer> oneL=new ArrayList<>();
+        for(int[] match:matches)
+        {
+            map.put(match[0],map.getOrDefault(match[0],0));
+            map.put(match[1],map.getOrDefault(match[1],0)+1);
         }
-
-        Set<Integer> allSet = new HashSet<>();
-        Set<Integer> looserSet = new HashSet<>();
-        Map<Integer,Integer> playersLostMap = new HashMap<>();
-        for (int[] winnerLosser2ValueArray : matches) {
-            allSet.add(winnerLosser2ValueArray[0]);
-            int looser = winnerLosser2ValueArray[1];
-            looserSet.add(looser);
-            playersLostMap.merge(looser, 1, Integer::sum);
+        for(Map.Entry<Integer,Integer> e:map.entrySet())
+        {
+            if(e.getValue()==0)
+                zeroL.add(e.getKey());
+            if(e.getValue()==1)
+                oneL.add(e.getKey());
         }
-
-        List<Integer> wonOnlyOnce = new ArrayList<>();
-
-        playersLostMap.forEach((k, v) -> {
-            if (v == 1) {
-                wonOnlyOnce.add(k);
-            }
-        });
-        allSet.removeAll(looserSet);
-        List<Integer> neverDefeated = new ArrayList<>(allSet);
-        Collections.sort(neverDefeated);
-        Collections.sort(wonOnlyOnce);
-
-        return List.of(neverDefeated, wonOnlyOnce);
+        Collections.sort(zeroL);
+        Collections.sort(oneL);
+        ans.add(zeroL);
+        ans.add(oneL);
+        return ans;
     }
 }
