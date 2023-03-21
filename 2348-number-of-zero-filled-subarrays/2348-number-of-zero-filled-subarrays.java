@@ -1,18 +1,14 @@
 class Solution {
     public long zeroFilledSubarray(int[] nums) {
-        long ans=0, c=0;
+        long ans=0, num=0;
         for(int n:nums)
         {
             if(n==0)
-                c++;
+                num++;
             else
-            {
-                ans+=c*(c+1)/2;
-                c=0;
-            }
+                num=0;
+            ans+=num;
         }
-        if(c>0)
-            ans+=c*(c+1)/2;
         return ans;
     }
 }
