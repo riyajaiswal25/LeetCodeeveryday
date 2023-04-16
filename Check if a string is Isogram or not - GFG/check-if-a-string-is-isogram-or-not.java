@@ -30,12 +30,13 @@ class Solution
     //Function to check if a string is Isogram or not.
     static boolean isIsogram(String data){
         //Your code here
-        HashSet<Character> set=new HashSet<>();
+        HashMap<Character, Integer> map=new HashMap<>();
         for(int i=0;i<data.length();i++)
         {
-            if(set.contains(data.charAt(i)))
+            if(!map.containsKey(data.charAt(i)))
+            map.put(data.charAt(i),1);
+            else
             return false;
-            set.add(data.charAt(i));
         }
         return true;
     }
