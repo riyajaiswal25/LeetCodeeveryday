@@ -3,8 +3,8 @@ class Solution {
         if(stones.length==1)
             return stones[0];
         PriorityQueue<Integer> q=new PriorityQueue<>(Collections.reverseOrder());
-        for(int n:stones)
-            q.add(n);
+        for(int i:stones)
+            q.add(i);
         while(q.size()>1)
         {
             int polled=q.remove();
