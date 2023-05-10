@@ -1,36 +1,40 @@
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
-        ArrayList<Integer> list = new ArrayList<>();
-        int rowB = 0;
-        int rowE = matrix.length - 1;
-        int colB = 0;
-        int colE = matrix[0].length - 1;
-
-         // Eg - [[1,2,3],[4,5,6],[7,8,9]]
-        while(rowB <= rowE && colB <= colE){
-            for(int i = colB ; i <= colE ; i++) // printing 1 , 2 , 3
-                list.add(matrix[rowB][i]);
-            
-            rowB++;
-
-            for(int i = rowB ; i <= rowE ; i++) // printing 6 , 9
-                list.add(matrix[i][colE]);
-            
-            colE--;
-
-            if(rowB <= rowE){
-                for(int i = colE ; i >= colB ; i--) // printing 8 , 7
-                    list.add(matrix[rowE][i]);
-                
-                rowE--;
+        int n=matrix.length;
+        int m=matrix[0].length;
+        int top=0;
+        int left=0;
+        int right=m-1, bottom=n-1;
+        List<Integer> ans=new ArrayList<>();
+        while(left<=right && top<=bottom)
+        {
+            for(int i=left;i<=right;i++)
+            {
+                ans.add(matrix[top][i]);
             }
-            if(colB <= colE){
-                for(int i = rowE ; i >= rowB ; i--) // printing 4 , 5
-                    list.add(matrix[i][colB]);
-                
-                colB++;
+            top++;
+            for(int i=top;i<=bottom;i++)
+            {
+                ans.add(matrix[i][right]);
+            }
+            right--;
+            if(top<=bottom)
+            {
+                for(int i=right;i>=left;i--)
+                {
+                    ans.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+            if(left<=right)
+            {
+                for(int i=bottom;i>=top;i--)
+                {
+                    ans.add(matrix[i][left]);
+                }
+                left++;
             }
         }
-        return list;
+        return ans;
     }
 }
