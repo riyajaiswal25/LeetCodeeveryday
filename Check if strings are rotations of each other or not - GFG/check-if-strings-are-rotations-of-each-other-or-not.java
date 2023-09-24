@@ -46,14 +46,8 @@ class Solution
     public static boolean areRotations(String s1, String s2 )
     {
         // Your code here
-        String str=s2+s2;
-        if(s1.length()!=s2.length())
-         return false;
-        if(str.contains(s1))
-        {
-            return true;
-        }
-        else
+        if((s1.length()==s2.length()) && (s1+s1).indexOf(s2) != -1)
+        return true;
         return false;
     }
     
