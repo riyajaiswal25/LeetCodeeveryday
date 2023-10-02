@@ -11,5 +11,6 @@ class Solution {
             suf=suf*nums[i];
         }
         return prod;
+        
     }
 }
