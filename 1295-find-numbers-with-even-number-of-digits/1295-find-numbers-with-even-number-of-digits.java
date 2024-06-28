@@ -1,14 +1,7 @@
 class Solution {
     private int checkEven(int num)
     {
-        int cnt=0;
-        while(num!=0)
-        {
-            int a=num%10;
-            num=num/10;
-            cnt++;
-        }
-        return cnt;
+        return (int)(Math.log10(num))+1;
     }
     public int findNumbers(int[] nums) {
         int c=0;
